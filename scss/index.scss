@@ -1,0 +1,289 @@
+@import'../scss/variables.scss';
+@import '../scss/mixins.scss';
+
+/* HEADER */
+.header-container {
+    background-color: $color_secundario;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include responsive(mobile) {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    h1 {
+        font-family: $fuente_secundaria;
+        @include flex-left;
+
+        @include responsive(mobile) {
+            font-size: 22px;
+        }
+    }
+
+    .nav-buttons button:nth-child(1) {
+        @include flex-right;
+        background-color: $color_base;
+        font-family: $fuente_secundaria;
+        color: $color_secundario;
+        margin-left: 10px;
+        border-radius: 15px;
+        border: none;
+        width: 100px;
+        height: 50px;
+        padding: 10px;
+        cursor: pointer;
+
+        @include responsive(mobile) {
+            width: 80px;
+            height: 40px;
+            font-size: 12px;
+        }
+    }
+
+    .nav-buttons button:nth-child(2) {
+        background-color: $color_terciario;
+        font-family: $fuente_secundaria;
+        color: $color_base;
+        margin-left: 10px;
+        border-radius: 15px;
+        border: none;
+        width: 100px;
+        height: 50px;
+        padding: 10px;
+        cursor: pointer;
+
+        @include responsive(mobile) {
+            width: 80px;
+            height: 40px;
+            font-size: 12px;
+        }
+    } 
+}
+
+/*BODY*/
+body {
+    background-color: $color_base;
+    margin: 0;
+}
+
+/* HERO */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.animated-title {
+    font-family: $fuente_base, sans-serif;
+    color: $color_secundario;
+    font-size: 70px;
+    text-align: center;
+    overflow: hidden;
+    border-right: 2px solid white;
+    white-space: nowrap;
+    width: 0;
+    margin: 0 auto;
+    padding: 30px;
+    animation: typing 3s steps(20, end) forwards, blink 0.75s step-end infinite;
+
+    @include responsive(mobile) {
+        font-size: 40px;
+        padding: 10px;
+    }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 22ch; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+    100% { border-color: white; }
+}
+
+.description {
+    @include flex-center;
+    color: $color_terciario;
+    font-size: 20px;
+    max-width: 600px;
+    margin: 20px auto 0;
+    line-height: 1.5;
+
+    @include responsive(mobile) {
+        font-size: 18px;
+        padding: 0 15px;
+    }
+}
+
+/*SECCIONES*/
+.sec1 {
+    @include flex-center;
+    min-height: 100vh;
+    background-color: $color_secundario;
+
+    .animated-phrase {
+        font-size: 80px;
+        margin: 20px 0;
+        font-family: $fuente_secundaria, sans-serif;
+        color: $color_base;
+
+        @include responsive(mobile) {
+            font-size: 40px;
+            text-align: center;
+        }
+    }
+
+    .static-text { display: inline; }
+
+    .dynamic-text {
+        display: inline-block;
+        position: relative;
+        width: 350px;
+        height: 1em;
+        overflow: hidden;
+        vertical-align: bottom;
+
+        @include responsive(mobile) {
+            width: 220px;
+        }
+    }
+
+    .dynamic-text span {
+        position: absolute;
+        left: 0;
+        animation: slide 6s infinite;
+        opacity: 0;
+
+        &:nth-child(1) { animation-delay: 0s; }
+        &:nth-child(2) { animation-delay: 2s; }
+        &:nth-child(3) { animation-delay: 4s; }
+    }
+
+    @keyframes slide {
+        0% { opacity: 0; transform: translateY(100%); }
+        10%, 30% { opacity: 1; transform: translateY(0); }
+        40%, 100% { opacity: 0; transform: translateY(-100%); }
+    }
+}
+
+/* SECCION 2 */
+.sec2 {
+    min-height: 100vh;
+    padding: 20px;
+    background-color: $color_terciario;
+
+    h3 {
+        @include flex-center;
+        color: $color_base;
+        font-family: $fuente_base;
+        font-size: 40px;
+        padding: 15px;
+    }
+}
+
+.introduccion {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // 3 cajas en fila
+    gap: 30px;
+    padding: 20px;
+    justify-content: center; // centra las columnas si sobra espacio
+}
+
+.introduccion .post-card {
+    background-color: darken($color_base, 5%);
+    padding: 25px;
+    border-radius: 10px;
+    min-height: 250px; // altura uniforme
+    transition: transform 0.3s;
+
+    &:hover { transform: scale(1.05); }
+
+    h2 { 
+        margin: 10px 0; 
+        font-family: $fuente_base;
+        font-size: 28px;
+        color: $color_secundario;
+        @include flex-center;
+    }
+    
+    p {
+        font-family: $fuente_secundaria;
+        font-size: 20px;
+        color: $color_terciario;
+        @include flex-center;
+    }
+}
+
+
+/* SECCION 3 */
+.sec3 {
+    min-height: 100vh;
+    padding: 20px;
+    background-color: $color_terciario;
+
+    h3 {
+        @include flex-center;
+        color: $color_base;
+        font-family: $fuente_base;
+        font-size: 40px;
+        padding: 15px;
+    }
+
+    .features {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 35px;                             
+        padding: 20px;                         
+        justify-content: center; 
+
+        @include responsive(mobile) {
+            grid-template-columns: repeat(1,1fr);
+        }
+    }
+
+    .features .post-card {
+        background-color: darken($color_base, 5%);
+        padding: 25px;
+        border-radius: 10px;
+        min-height: 250px;
+        width: 90%;   // ocupa toda la celda del grid
+        transition: transform 0.3s;
+        &:hover { transform: scale(1.05); }
+        h2 { 
+            margin: 10px 0; 
+            font-family: $fuente_base;
+            color: $color-secundario;
+            @include flex-center;
+        }
+
+        p {
+        font-family: $fuente_secundaria;
+        font-size: 20px;
+        color: $color_terciario;
+        @include flex-center; }
+
+    }
+}
+
+/* FOOTER */
+footer {
+    background-color: $color_secundario;
+    padding: 20px;
+    text-align: center;
+
+    p {
+        color: $color_base;
+        font-size: 15px;
+        margin: 0;
+
+        @include responsive(mobile) {
+            font-size: 12px;
+        }
+    }
+}

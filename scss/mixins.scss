@@ -1,0 +1,29 @@
+/* Alineacion ceentrada*/
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Alineado a la derecha */
+@mixin flex-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Alineado a la izquierda */
+@mixin flex-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/*responsive*/ 
+@mixin responsive($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: 768px) { @content; }
+  }
+  @else if $breakpoint == tablet {
+    @media (max-width: 1024px) { @content; }
+  }
+}

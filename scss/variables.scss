@@ -1,0 +1,23 @@
+/*VARIABLES DE COLOR*/
+/*Usadas en el index*/
+$color_base:#00284C; /*Azul*/
+$color_secundario: #A0E8C5; /* verde agua */
+$color_terciario: #EDEDED; /* gris */
+
+/*VARIABLES LETRAS*/
+$fuente_base: "Roboto", sans-serif;
+$fuente_secundaria: "Lexend", sans-serif;
+.roboto-custom {
+  font-family: $fuente_base;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+.lexend-letra {
+  font-family: $fuente_secundaria, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
