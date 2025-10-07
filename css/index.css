@@ -318,9 +318,8 @@ body {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-.sec3 {
-  /* === Tarjetas con efecto flip === */
-}
+
+
 .sec3 .card {
   perspective: 1000px;
   width: 90%;
