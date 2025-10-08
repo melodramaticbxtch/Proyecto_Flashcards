@@ -1,72 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Login</title>
-  <link rel="stylesheet" href="../css/login_singup.css">
-</head>
-<body>
-  <div class="container">
-    <section class="banner">
-      <img src="../assets/login.png" alt="Banner">
-    </section>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/login_singup.css">
+  </head>
+  <body>
+    <div class="container">
+      <section class="banner">
+        <img src="../assets/login.png" alt="Banner">
+      </section>
+      <section class="login-section">
+        <!-- Formulario de inicio de sesión -->
+        <form id="login-form" class="login-form" novalidate>
+          <h2>Iniciar sesión</h2>
+          <input id="usuario" name="usuario" type="text" placeholder="Usuario" required>
+          <input id="password" name="password" type="password" placeholder="Contraseña" required>
+          <button type="submit">Entrar</button>
+        </form>
+      </section>
+    </div>
 
-    <section class="login-section">
-      <form id="login-form" class="login-form" novalidate>
-        <h2>Iniciar sesión</h2>
-        <input id="usuario" name="usuario" type="text" placeholder="Usuario" required>
-        <input id="password" name="password" type="password" placeholder="Contraseña" required>
-        <button type="submit">Entrar</button>
-      </form>
-    </section>
-  </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Busco el form por id y si no existe, como fallback por class
+        const form = document.getElementById("login-form") || document.querySelector(".login-form");
+        const usuarioInput = document.getElementById("usuario") || (form && form.querySelector('input[type="text"]'));
+        const submitBtn = form && (form.querySelector('button[type="submit"]') || form.querySelector('button'));
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Busco el form por id y si no existe, como fallback por class
-      const form = document.getElementById("login-form") || document.querySelector(".login-form");
-      const usuarioInput = document.getElementById("usuario") || (form && form.querySelector('input[type="text"]'));
-      const submitBtn = form && (form.querySelector('button[type="submit"]') || form.querySelector('button'));
-
-      console.log("DOM cargado -> form:", form, "usuarioInput:", usuarioInput, "submitBtn:", submitBtn);
+        console.log("DOM cargado -> form:", form, "usuarioInput:", usuarioInput, "submitBtn:", submitBtn);
 
 
-      // submit handler principal
-      form.addEventListener("submit", function(e) {
-        e.preventDefault(); // evita navegación por defecto
-        console.log("submit fired");
+        // submit handler principal
+        form.addEventListener("submit", function(e) {
+          e.preventDefault(); // evita navegación por defecto
+          console.log("submit fired");
 
-        // Validación HTML: si no es válido, muestro el helper y salgo
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          console.log("Formulario inválido según constraint validation API");
-          return;
-        }
+          // Validación HTML: si no es válido, muestro el helper y salgo
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            console.log("Formulario inválido según constraint validation API");
+            return;
+          }
 
-        const usuarioValue = usuarioInput.value.trim();
-        if (!usuarioValue) {
-          alert("Por favor, ingresá tu usuario");
-          return;
-        }
+          const usuarioValue = usuarioInput.value.trim();
+          if (!usuarioValue) {
+            alert("Por favor, ingresá tu usuario");
+            return;
+          }
 
-        localStorage.setItem("usuarioActual", usuarioValue);
-        console.log("usuario guardado en localStorage:", usuarioValue);
+          localStorage.setItem("usuarioActual", usuarioValue);
+          console.log("usuario guardado en localStorage:", usuarioValue);
 
-        // Ajustá la ruta si home.html está en otra carpeta
-        window.location.href = "home.html";
-      });
-
-      // Backup: si por alguna razón el submit no se dispara (por validación previa del navegador),
-      // también interceptamos el click del botón y forzamos el submit del form.
-      if (submitBtn) {
-        submitBtn.addEventListener("click", function(ev) {
-          ev.preventDefault();
-          console.log("click en submit (backup) -> forzando submit");
-          // Forzamos disparar el evento submit del form — así usamos la misma lógica
-          form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+          window.location.href = "home.html";
         });
-      }
-    });
-  </script>
-</body>
+
+        // Backup: si por alguna razón el submit no se dispara,
+        // también interceptamos el click del botón y forzamos el submit del form.
+        if (submitBtn) {
+          submitBtn.addEventListener("click", function(ev) {
+            ev.preventDefault();
+            console.log("click en submit (backup) -> forzando submit");
+          
+            form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+          });
+        }
+      });
+    </script>
+  </body>
 </html>

@@ -1,92 +1,90 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crear nuevo set</title>
-  <link rel="stylesheet" href="../css/generador_sets.css">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jacquarda+Bastarda+9&family=Lexend&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="container">
-    <h1>Crear nuevo set</h1>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear nuevo set</title>
+    <link rel="stylesheet" href="../css/generador_sets.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquarda+Bastarda+9&family=Lexend&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Crear nuevo set</h1>
+      <div class="set-info">
+        <input type="text" id="setName" placeholder="Nombre del set">
+        <textarea id="setDescription" rows="3" placeholder="Descripción del set (opcional)"></textarea>
+      </div>
 
-    <!-- Información general del set -->
-    <div class="set-info">
-      <input type="text" id="setName" placeholder="Nombre del set">
-      <textarea id="setDescription" rows="3" placeholder="Descripción del set (opcional)"></textarea>
+      <!-- Boton para crear  -->
+      <div class="actions">
+        <button class="add-card" onclick="agregarTarjeta()">Agregar Tarjeta</button>
+        <button class="save" onclick="guardarSet()">Listo</button>
+      </div>
+
+      <!-- tarjetas -->
+      <div class="cards" id="cards-container">
+      
+      </div>
     </div>
 
-    <!-- Acciones -->
-    <div class="actions">
-      <button class="add-card" onclick="agregarTarjeta()">Agregar Tarjeta</button>
-      <button class="save" onclick="guardarSet()">Listo</button>
-    </div>
+    <script>
+      const container = document.getElementById("cards-container");
 
-    <!-- Tarjetas -->
-    <div class="cards" id="cards-container">
-      <!-- Aquí se van agregando las tarjetas -->
-    </div>
-  </div>
-
-  <script>
-    const container = document.getElementById("cards-container");
-
-    // Agregar tarjeta
-    function agregarTarjeta() {
-      const card = document.createElement("div");
-      card.classList.add("card");
-      card.innerHTML = `
-        <input type="text" placeholder="Término">
-        <input type="text" placeholder="Definición">
-        <button class="delete-btn" onclick="eliminarTarjeta(this)">Eliminar</button>
-      `;
-      container.appendChild(card);
-    }
-
-    // Eliminar tarjeta
-    function eliminarTarjeta(btn) {
-      btn.parentElement.remove();
-    }
-
-    // Guardar set en localStorage
-    function guardarSet() {
-      const nombre = document.getElementById("setName").value.trim();
-      const descripcion = document.getElementById("setDescription").value.trim();
-
-      if (!nombre) {
-        alert("Poné un nombre para el set 😉");
-        return;
+      // para agregar tarjeta
+      function agregarTarjeta() {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+          <input type="text" placeholder="Término">
+          <input type="text" placeholder="Definición">
+          <button class="delete-btn" onclick="eliminarTarjeta(this)">Eliminar</button>
+        `;
+        container.appendChild(card);
       }
 
-      const colecciones = JSON.parse(localStorage.getItem("colecciones")) || [];
+      // para eliminar tarjeta
+      function eliminarTarjeta(btn) {
+        btn.parentElement.remove();
+      }
 
-      const nuevaColeccion = {
-        nombre: nombre,
-        descripcion: descripcion || "",
-        categoria: "-",            // Podés agregar input para categoría si querés
-        usuario: "Kiara",          // Podés hacerlo dinámico si hay login
-        fecha: new Date().toLocaleDateString(),
-        ultimoAcceso: "-",
-        tarjetas: []               // Guardamos las tarjetas también
-      };
+      // para guardar set en localStorage
+      function guardarSet() {
+        const nombre = document.getElementById("setName").value.trim();
+        const descripcion = document.getElementById("setDescription").value.trim();
 
-      // Guardar tarjetas
-      container.querySelectorAll(".card").forEach(card => {
-        const term = card.querySelector("input:nth-child(1)").value.trim();
-        const def = card.querySelector("input:nth-child(2)").value.trim();
-        if (term || def) {
-          nuevaColeccion.tarjetas.push({ termino: term, definicion: def });
+        if (!nombre) {
+          alert("Poné un nombre para el set 😉");
+          return;
         }
-      });
 
-      colecciones.push(nuevaColeccion);
-      localStorage.setItem("colecciones", JSON.stringify(colecciones));
+        const colecciones = JSON.parse(localStorage.getItem("colecciones")) || [];
 
-      // Redirigir al home
-      window.location.href = "home.html";
-    }
-  </script>
-</body>
+        const nuevaColeccion = {
+          nombre: nombre,
+          descripcion: descripcion || "",
+          categoria: "-",            // Podés agregar input para categoría si querés
+          usuario: "Kiara",          // Podés hacerlo dinámico si hay login
+          fecha: new Date().toLocaleDateString(),
+          ultimoAcceso: "-",
+          tarjetas: []               // Guardamos las tarjetas también
+        };
+
+        // guardar tarjetas
+        container.querySelectorAll(".card").forEach(card => {
+          const term = card.querySelector("input:nth-child(1)").value.trim();
+          const def = card.querySelector("input:nth-child(2)").value.trim();
+          if (term || def) {
+            nuevaColeccion.tarjetas.push({ termino: term, definicion: def });
+          }
+        });
+
+        colecciones.push(nuevaColeccion);
+        localStorage.setItem("colecciones", JSON.stringify(colecciones));
+
+        // para redirigir al home
+        window.location.href = "home.html";
+      }
+    </script>
+  </body>
 </html>

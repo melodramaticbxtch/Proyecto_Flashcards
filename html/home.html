@@ -1,129 +1,125 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
-  <link rel="stylesheet" href="../css/home.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="../css/home.css">
+  </head>
+  <body>
 
-  <!-- Sidebar -->
-  <aside id="sidebar" class="sidebar">
-    <button class="close-btn" onclick="closeSidebar()">×</button>
-    <a href="#">Inicio</a>
-    <a href="#">Favoritos</a>
-    <a href="#">Configuración</a>
-  </aside>
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <button class="close-btn" onclick="closeSidebar()">×</button>
+      <a href="#">Inicio</a>
+      <a href="#">Favoritos</a>
+      <a href="#">Configuración</a>
+    </aside>
 
-  <!-- Contenido principal -->
-  <div id="main">
-    <header class="topbar">
-      <button class="menu-btn" onclick="openSidebar()">☰</button>
-      <h1 id="bienvenida">Bienvenid@</h1>
-    </header>
+    <!-- Contenido principal -->
+    <div id="main">
+      <header class="topbar">
+        <button class="menu-btn" onclick="openSidebar()">☰</button>
+        <h1 id="bienvenida">Bienvenid@</h1>
+      </header>
 
-    <!-- Sección superior con cajitas -->
-<section class="plantillas" id="plantillas">
-  <!-- Primera cajita fija para crear nueva colección -->
-  <div class="plantilla nueva-coleccion">
-    <span class="icon">➕</span>
-    <a href="generar_sets.html">Crear nueva colección</a>
+      <!-- Sección superior con cajitas -->
+  <section class="plantillas" id="plantillas">
+    <!-- Primera cajita fija para crear nueva colección -->
+    <div class="plantilla nueva-coleccion">
+      <span class="icon">➕</span>
+      <a href="generar_sets.html">Crear nueva colección</a>
+    </div>
+    <!-- Cajitas de colecciones dinámicas se agregan con JS -->
+  </section>
+
+
+  <div class="crear-coleccion-boton">
+    <button onclick="window.location.href='generar_sets.html'">+ Nueva Colección</button>
   </div>
-  <!-- Cajitas de colecciones dinámicas se agregan con JS -->
-</section>
 
-<!-- Botón para crear nueva colección afuera de la grilla -->
-<div class="crear-coleccion-boton">
-  <button onclick="window.location.href='generar_sets.html'">+ Nueva Colección</button>
-</div>
-
-<!-- Sección inferior (tabla/cuadrilla) -->
-<section class="tableros">
-  <h2>Tus Colecciones</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Categoria</th>
-        <th>Abierto por última vez</th>
-      </tr>
-    </thead>
-    <tbody id="colecciones-body">
-      <!-- Se llenará dinámicamente desde JS -->
-    </tbody>
-  </table>
-</section>
+  <section class="tableros">
+    <h2>Tus Colecciones</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Categoria</th>
+          <th>Abierto por última vez</th>
+        </tr>
+      </thead>
+      <tbody id="colecciones-body">
+        <!-- Se llenará dinámicamente desde JS -->
+      </tbody>
+    </table>
+  </section>
 
 
-  <script>
-    // Mostrar nombre de usuario
-     const usuario = localStorage.getItem('usuarioActual');
-     const bienvenida = document.getElementById('bienvenida');
+    <script>
+      // para mostrar nombre de usuario
+      const usuario = localStorage.getItem('usuarioActual');
+      const bienvenida = document.getElementById('bienvenida');
 
-      if (usuario && bienvenida) {
-        bienvenida.textContent = `¡Bienvenid@, ${usuario}!`;
-     }
+        if (usuario && bienvenida) {
+          bienvenida.textContent = `¡Bienvenid@, ${usuario}!`;
+      }
 
-    // Abrir y cerrar sidebar
-    function openSidebar() {
-      document.getElementById("sidebar").style.width = "250px";
-      document.getElementById("main").style.marginLeft = "250px";
-    }
-    function closeSidebar() {
-      document.getElementById("sidebar").style.width = "0";
-      document.getElementById("main").style.marginLeft = "0";
-    }
+      // Abrir y cerrar sidebar
+      function openSidebar() {
+        document.getElementById("sidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+      }
+      function closeSidebar() {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+      }
 
-    // ---- Manejo de cajitas dinámicas ----
-    const plantillas = document.getElementById("plantillas");
+      const plantillas = document.getElementById("plantillas");
 
-    function cargarCajitas() {
-      // Elimina las cajitas dinámicas existentes (no la primera)
-      plantillas.querySelectorAll(".plantilla.dynamic").forEach(c => c.remove());
+      function cargarCajitas() {
+        // Para elimina las cajitas dinámicas existentes 
+        plantillas.querySelectorAll(".plantilla.dynamic").forEach(c => c.remove());
 
-      const colecciones = JSON.parse(localStorage.getItem("colecciones")) || [];
+        const colecciones = JSON.parse(localStorage.getItem("colecciones")) || [];
 
-      colecciones.forEach(c => {
-        const div = document.createElement("div");
-        div.className = "plantilla dynamic";
-        div.onclick = () => {
-          // Abrir colección (puedes redirigir o mostrar alerta)
-          alert(`Abriste la colección: ${c.nombre}`);
-        };
-        div.innerHTML = `<span class="icon">📄</span><p>${c.nombre}</p>`;
-        plantillas.appendChild(div);
-      });
-    }
-
-    // ---- Manejo de tabla de colecciones ----
-    const bodyTabla = document.getElementById("colecciones-body");
-
-    function cargarTabla() {
-      bodyTabla.innerHTML = ""; // Limpiar tabla
-      const colecciones = JSON.parse(localStorage.getItem("colecciones")) || [];
-
-      if (colecciones.length === 0) {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `<td colspan="3" style="text-align:center; color: #888;">No tienes colecciones aún</td>`;
-        bodyTabla.appendChild(tr);
-      } else {
         colecciones.forEach(c => {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td><strong>${c.nombre}</strong><br><small>Modificado por ${c.usuario},</td>
-            <td>${c.categoria || "-"}</td>
-            <td>${c.ultimoAcceso || "-"}, ${c.fecha}</small></td>
-          `;
-          bodyTabla.appendChild(tr);
+          const div = document.createElement("div");
+          div.className = "plantilla dynamic";
+          div.onclick = () => {
+            // Abrir colección 
+            alert(`Abriste la colección: ${c.nombre}`);
+          };
+          div.innerHTML = `<span class="icon">📄</span><p>${c.nombre}</p>`;
+          plantillas.appendChild(div);
         });
       }
-    }
 
-    // Cargar todo al inicio
-    cargarCajitas();
-    cargarTabla();
-  </script>
+      const bodyTabla = document.getElementById("colecciones-body");
 
-</body>
+      function cargarTabla() {
+        bodyTabla.innerHTML = ""; // Limpiar tabla
+        const colecciones = JSON.parse(localStorage.getItem("colecciones")) || [];
+
+        if (colecciones.length === 0) {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `<td colspan="3" style="text-align:center; color: #888;">No tienes colecciones aún</td>`;
+          bodyTabla.appendChild(tr);
+        } else {
+          colecciones.forEach(c => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td><strong>${c.nombre}</strong><br><small>Modificado por ${c.usuario},</td>
+              <td>${c.categoria || "-"}</td>
+              <td>${c.ultimoAcceso || "-"}, ${c.fecha}</small></td>
+            `;
+            bodyTabla.appendChild(tr);
+          });
+        }
+      }
+
+      // Cargar todo al inicio
+      cargarCajitas();
+      cargarTabla();
+    </script>
+  </body>
 </html>

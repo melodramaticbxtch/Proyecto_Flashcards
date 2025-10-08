@@ -16,20 +16,27 @@ body, html {
 
 .container {
   display: flex;
-  height: 100vh; /* ocupa toda la pantalla */
+  height: 100vh; 
   @include responsive(mobile) {
+    flex-direction: column; 
+    height: auto;
+  }
+  @include responsive(tablet) {
     flex-direction: column; 
     height: auto;
   }
 }
 
 .banner {
-  flex: 1; /* ocupa la mitad */
-  background-color: $color_secundario; /* por si no hay imagen */
+  flex: 1; 
+  background-color: $color_secundario;
   display: flex;
   justify-content: center;
   align-items: center;
   @include responsive(mobile) {
+      height: 40vh; 
+    }
+  @include responsive(tablet) {
       height: 40vh; 
     }
 }
@@ -37,19 +44,25 @@ body, html {
 .banner img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* para que la imagen llene bien el espacio */
+  object-fit: cover;
   @include responsive(mobile) {
+      height: 40vh; 
+    }
+  @include responsive(tablet) {
       height: 40vh; 
     }
 }
 
 .login-section {
-  flex: 1; /* la otra mitad */
+  flex: 1; 
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: $color_terciario;
   @include responsive(mobile) {
+    padding: 100px 0;
+  }
+    @include responsive(tablet) {
     padding: 100px 0;
   }
 }

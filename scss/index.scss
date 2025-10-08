@@ -340,6 +340,7 @@ footer {
     p {
         color: $color_base;
         font-size: 15px;
+        font-family: $fuente_secundaria;
         margin: 0;
 
         @include responsive(mobile) {

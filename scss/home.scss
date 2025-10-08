@@ -34,7 +34,7 @@ body {
   padding: 20px;
 }
 
-/* Sidebar */
+/* SISEBAR */
 .sidebar {
   position: fixed;
   top: 0;
@@ -74,7 +74,7 @@ body {
   cursor: pointer;
 }
 
-/* Main content */
+/* MAIN*/
 #main {
   transition: margin-left 0.3s;
   padding: 20px;
@@ -99,7 +99,7 @@ body {
   margin-right: 10px;
 }
 
-/* Cajitas superiores */
+/* CAJITAS SUPERIORES*/
 .plantillas {
   display: flex;
   gap: 15px;
@@ -130,7 +130,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* Botón crear nueva colección (fuera de la grilla) */
+/* Botón crear nueva colección */
 .crear-coleccion-boton {
     @include flex-right;
   text-align: center;
@@ -153,7 +153,7 @@ body {
   }
 }
 
-/* Cuadrilla inferior */
+/* TABLERO*/
 .tableros {
   background: $color_terciario;
   border-radius: 10px;
