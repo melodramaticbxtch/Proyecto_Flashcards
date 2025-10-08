@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
-  <link rel="stylesheet" href="css/login_singup.css">
+  <link rel="stylesheet" href="css\login_singup.css">
 </head>
 <body>
   <div class="container">
     <section class="banner">
-      <img src="/assets/login.png" alt="Banner">
+      <img src="assets\login.png" alt="Banner">
     </section>
-
     <section class="login-section">
+      <!-- Cajita para inciar sesión -->
       <form id="login-form" class="login-form" novalidate>
         <h2>Iniciar sesión</h2>
         <input id="usuario" name="usuario" type="text" placeholder="Usuario" required>
@@ -51,8 +51,6 @@
 
         localStorage.setItem("usuarioActual", usuarioValue);
         console.log("usuario guardado en localStorage:", usuarioValue);
-
-        // Ajustá la ruta si home.html está en otra carpeta
         window.location.href = "home.html";
       });
 

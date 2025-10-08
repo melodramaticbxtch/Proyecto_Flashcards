@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
-  <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="css\home.css">
 </head>
 <body>
 
@@ -57,7 +57,7 @@
 
 
   <script>
-    // Mostrar nombre de usuario
+    // para mostrar nombre de usuario
      const usuario = localStorage.getItem('usuarioActual');
      const bienvenida = document.getElementById('bienvenida');
 
@@ -65,7 +65,7 @@
         bienvenida.textContent = `¡Bienvenid@, ${usuario}!`;
      }
 
-    // Abrir y cerrar sidebar
+    // para abrir y cerrar sidebar
     function openSidebar() {
       document.getElementById("sidebar").style.width = "250px";
       document.getElementById("main").style.marginLeft = "250px";
@@ -74,12 +74,10 @@
       document.getElementById("sidebar").style.width = "0";
       document.getElementById("main").style.marginLeft = "0";
     }
-
-    // ---- Manejo de cajitas dinámicas ----
     const plantillas = document.getElementById("plantillas");
 
     function cargarCajitas() {
-      // Elimina las cajitas dinámicas existentes (no la primera)
+      // para eliminar las cajitas dinámicas existentes 
       plantillas.querySelectorAll(".plantilla.dynamic").forEach(c => c.remove());
 
       const colecciones = JSON.parse(localStorage.getItem("colecciones")) || [];
@@ -96,7 +94,6 @@
       });
     }
 
-    // ---- Manejo de tabla de colecciones ----
     const bodyTabla = document.getElementById("colecciones-body");
 
     function cargarTabla() {
@@ -120,7 +117,7 @@
       }
     }
 
-    // Cargar todo al inicio
+    // para cargar todo al inicio
     cargarCajitas();
     cargarTabla();
   </script>

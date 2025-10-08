@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Sing Up</title>
-  <link rel="stylesheet" href="/css/login_singup.css">
+  <link rel="stylesheet" href="css\login_singup.css">
 </head>
 <body>
   <div class="container">
     <section class="banner">
-      <img src="/assets/signup.png" alt="Banner">
+      <img src="assets\signup.png" alt="Banner">
     </section>
-
+    <!-- Cajita para registrarse -->
     <section class="login-section">
       <form id="login-form" class="login-form" novalidate>
         <h2>Registrarse</h2>
@@ -52,11 +52,10 @@
         localStorage.setItem("usuarioActual", usuarioValue);
         console.log("usuario guardado en localStorage:", usuarioValue);
 
-        // Ajustá la ruta si home.html está en otra carpeta
         window.location.href = "home.html";
       });
 
-      // Backup: si por alguna razón el submit no se dispara (por validación previa del navegador),
+      // Backup: si por alguna razón el submit no se dispara,
       // también interceptamos el click del botón y forzamos el submit del form.
       if (submitBtn) {
         submitBtn.addEventListener("click", function(ev) {
