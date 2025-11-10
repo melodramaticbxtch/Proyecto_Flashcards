@@ -23,6 +23,7 @@
       <h1 id="bienvenida">Bienvenid@</h1>
     </header>
 
+<<<<<<< Updated upstream
     <!-- Sección superior con cajitas -->
 <section class="plantillas" id="plantillas">
   <!-- Primera cajita fija para crear nueva colección -->
@@ -60,6 +61,42 @@
     // Mostrar nombre de usuario
      const usuario = localStorage.getItem('usuarioActual');
      const bienvenida = document.getElementById('bienvenida');
+=======
+      <!-- Sección superior con cajitas -->
+      <section class="plantillas" id="plantillas">
+        <!-- Primera cajita fija para crear nueva colección -->
+        <div class="plantilla nueva-coleccion">
+          <span class="icon">➕</span>
+          <a href="generar_sets.html">Crear nueva colección</a>
+        </div>
+        <!-- Cajitas de colecciones dinámicas se agregan con JS -->
+      </section>
+
+
+      <div class="crear-coleccion-boton">
+        <button onclick="window.location.href='generar_sets.html'">+ Nueva Colección</button>
+      </div>
+
+      <section class="tableros">
+        <h2>Tus Colecciones</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Categoria</th>
+              <th>Abierto por última vez</th>
+            </tr>
+          </thead>
+          <tbody id="colecciones-body">
+          </tbody>
+        </table>
+      </section>
+    </div>
+    <script>
+      // para mostrar nombre de usuario
+      const usuario = localStorage.getItem('usuarioActual');
+      const bienvenida = document.getElementById('bienvenida');
+>>>>>>> Stashed changes
 
       if (usuario && bienvenida) {
         bienvenida.textContent = `¡Bienvenid@, ${usuario}!`;
