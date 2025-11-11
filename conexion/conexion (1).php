@@ -1,25 +1,13 @@
 <?php
-function conectar()
-{
-	global $con;
-	$con = mysqli_connect("localhost","root","","ucp2025");
-		/* comprobar la conexión */
-		if (mysqli_connect_errno()) 
-		{
-		    printf("Falló la conexión: %s\n", mysqli_connect_error());
-		    exit();
-		}
-			else
-			{
-				$con -> set_charset("utf8");
-				$ret=true;
-			}
-		
-	return $ret;
-}
-function desconectar()
-{
-	global $con;
-	mysqli_close($con);
+$host = "127.0.0.1";
+$user = "root";
+$pass = "Kiarabg18";       
+$dbname = "flashcards_db";
+$port = 3307;
+
+$conn = new mysqli($host, $user, $pass, $dbname, $port);
+
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
 }
 ?>

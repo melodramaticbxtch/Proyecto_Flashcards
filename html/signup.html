@@ -1,9 +1,44 @@
+<?php
+// --- Conexión a la base de datos ---
+include 'conexion.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Recibir los datos del formulario
+  $usuario = $_POST['usuario'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+
+  // Encriptar la contraseña
+  $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+  // Insertar en la base de datos
+  $sql = "INSERT INTO usuarios (usuario, email, password) VALUES (?, ?, ?)";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("sss", $usuario, $email, $passwordHash);
+
+  if ($stmt->execute()) {
+    echo "<script>
+      alert('Registro exitoso 🎉');
+      window.location.href = 'login.php';
+    </script>";
+  } else {
+    echo "<script>
+      alert('Error al registrarse. Tal vez el usuario ya existe.');
+      window.location.href = 'signup.php';
+    </script>";
+  }
+
+  $stmt->close();
+  $conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Sing Up</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="../css/login_singup.css">
   </head>
   <body>
@@ -11,16 +46,18 @@
       <section class="banner">
         <img src="../assets/signup.png" alt="Banner">
       </section>
+
       <!-- Formulario de registro -->
       <section class="login-section">
-        <form class="login-form">
+        <form class="login-form" action="signup.php" method="POST">
           <h2>Registrarse</h2>
-          <input type="text" placeholder="Usuario" required>
-          <input type="text" placeholder="Correo Electronico" required>
-          <input type="password" placeholder="Contraseña" required>
-          <button type="submit" onclick="window.location.href='home.html'">Entrar</button>
+          <input type="text" name="usuario" placeholder="Usuario" required>
+          <input type="text" name="email" placeholder="Correo Electrónico" required>
+          <input type="password" name="password" placeholder="Contraseña" required>
+          <button type="submit">Registrarse</button>
         </form>
       </section>
     </div>
   </body>
 </html>
+
