@@ -111,21 +111,23 @@ $tarjetas = $stmtTarjetas->get_result();
             <div class="back" style="display:none;">
                 <?php echo htmlspecialchars($t["definicion"]); ?>
             </div>
+            <a class="delete-btn eliminar-tarjeta"
+   data-id="<?php echo $t['id_tarjeta']; ?>"
+   data-coleccion="<?php echo $id_coleccion; ?>">
+   ×
+</a>
 
-            <a class="delete-btn"
-               href="eliminar_tarjeta.php?id=<?php echo $t['id_tarjeta']; ?>&coleccion=<?php echo $id_coleccion; ?>"
-               onclick="return confirm('¿Eliminar tarjeta?');">×</a>
         </div>
       <?php endwhile; ?>
     </div>
 
     <!-- Botón grande rojo al final -->
     <div class="eliminar-container">
-      <a class="btn-eliminar"
-         href="eliminar_coleccion.php?id=<?php echo $id_coleccion; ?>"
-         onclick="return confirm('¿Seguro que querés eliminar esta colección y todas sus tarjetas?');">
-         Eliminar colección completa
-      </a>
+      <a class="btn-eliminar eliminar-coleccion"
+   data-id="<?php echo $id_coleccion; ?>">
+   Eliminar colección completa
+</a>
+
     </div>
 
   </div>
@@ -156,6 +158,51 @@ $tarjetas = $stmtTarjetas->get_result();
       }
   }
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+document.querySelectorAll(".eliminar-tarjeta").forEach(btn => {
+    btn.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        let id_tarjeta = this.dataset.id;
+        let id_coleccion = this.dataset.coleccion;
+
+        Swal.fire({
+            title: "¿Eliminar tarjeta?",
+            text: "Esta acción no se puede deshacer",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href =
+                    "eliminar_tarjeta.php?id=" + id_tarjeta + "&coleccion=" + id_coleccion;
+            }
+        });
+    });
+});
+
+document.querySelector(".eliminar-coleccion").addEventListener("click", function(e) {
+    e.preventDefault();
+    let id = this.dataset.id;
+
+    Swal.fire({
+        title: "¿Eliminar colección completa?",
+        text: "También se eliminarán todas sus tarjetas",
+        icon: "error",
+        showCancelButton: true,
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "eliminar_coleccion.php?id=" + id;
+        }
+    });
+});
+</script>
+
+
 
 </body>
 </html>
