@@ -1,0 +1,229 @@
+/*VARIABLES DE COLOR*/
+/*Usadas en el index*/
+/*Azul*/
+/* verde agua */
+/* gris */
+/*VARIABLES LETRAS*/
+.roboto-custom {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+.lexend-letra {
+  font-family: "Lexend", sans-serif, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ===== ESTILO GENERAL ===== */
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #EDEDED;
+  margin: 0;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+h1, h2 {
+  color: #00284C;
+  font-family: "Lexend", sans-serif;
+}
+
+/* ======================
+      SIDEBAR EXACTA
+====================== */
+.logout-btn {
+  margin-left: auto;
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #00284C;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+.sidebar a {
+  padding: 15px 25px;
+  display: block;
+  color: #EDEDED;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background 0.2s;
+}
+.sidebar a:hover {
+  background-color: #00284C;
+  color: #EDEDED;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  color: #EDEDED;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ======================
+          MAIN
+====================== */
+#main {
+  transition: margin-left 0.3s;
+  padding: 20px;
+}
+
+/* ======================
+         TOPBAR
+====================== */
+.topbar {
+  display: flex;
+  align-items: center;
+  background: #A0E8C5;
+  color: #00284C;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+.topbar .menu-btn {
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #00284C;
+  cursor: pointer;
+  margin-right: 15px;
+}
+.topbar .menu-btn:hover {
+  color: rgb(0, 13.1578947368, 25);
+}
+
+/* ======================
+        BOTONES
+====================== */
+button,
+.btn-agregar {
+  background-color: #00284C;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 6px 0;
+  display: inline-block;
+  font-family: "Lexend", sans-serif;
+  transition: background 0.2s;
+}
+button:hover,
+.btn-agregar:hover {
+  background-color: rgb(0, 13.1578947368, 25);
+}
+
+a {
+  color: #00284C;
+  text-decoration: none;
+}
+a:hover {
+  color: black;
+}
+
+/* ======================
+        FLASHCARDS
+====================== */
+.flashcard {
+  width: 230px;
+  min-height: 160px;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid #00284C;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  margin: 12px;
+  padding: 15px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s;
+  font-family: "Lexend", sans-serif;
+}
+.flashcard .front,
+.flashcard .back {
+  font-size: 18px;
+  color: #00284C;
+  text-align: center;
+  word-wrap: break-word;
+  padding: 5px;
+}
+.flashcard:hover {
+  transform: scale(1.03);
+}
+.flashcard .delete-btn {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-size: 22px;
+  color: red;
+  text-decoration: none;
+}
+.flashcard .delete-btn:hover {
+  color: #cc0000;
+}
+
+.subtitulo-desc {
+  font-family: "Lexend", sans-serif;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: #00284C;
+}
+
+.descripcion {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  margin-bottom: 25px;
+  color: #00284C;
+  opacity: 0.9;
+}
+
+.acciones {
+  margin-bottom: 25px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.lista-tarjetas {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.eliminar-container {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.btn-eliminar {
+  background: red;
+  padding: 12px 18px;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: "Lexend", sans-serif;
+}
+.btn-eliminar:hover {
+  background: #cc0000;
+}
+
+/*# sourceMappingURL=coleccion.css.map */

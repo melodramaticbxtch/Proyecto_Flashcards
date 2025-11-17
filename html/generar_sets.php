@@ -52,74 +52,84 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Crear nuevo set</title>
-<link rel="stylesheet" href="../css/generador_sets.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Crear nuevo set</title>
+        <link rel="stylesheet" href="../css/generador_sets.css">
+    </head>
 
-<body>
-<div class="container">
+    <body>
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar">
+            <button class="close-btn" onclick="closeSidebar()">×</button>
+            <a href="home.php">Inicio</a>
+            <a href="favoritos_pag.php">Favoritos</a>
+            <a href="#">Configuración</a>
+            <a href="logout.php">Cerrar sesión</a>
+        </aside>
 
-    <h1>Crear nuevo set</h1>
+        <!-- Contenido principal -->
+        <div id="main">
+            <header class="topbar">
+            <button class="menu-btn" onclick="openSidebar()">☰</button>
+            <h1 id="bienvenida">Crear tu nueva coleccion!</h1>
+            </header>
 
-    <a href="home.php" class="btn-volver-home">⬅ Volver al Home</a>
+            <div class="container">
 
-    <form method="POST" id="formSet">
+                <h1>Crear nuevo set</h1>
 
-        <div class="set-info">
-            <input type="text" name="nombre" id="setName" placeholder="Nombre del set" required>
+                <form method="POST" id="formSet">
 
-            <textarea name="descripcion" id="setDescription" rows="3"
-                placeholder="Descripción del set (opcional)"></textarea>
+                    <div class="set-info">
+                        <input type="text" name="nombre" id="setName" placeholder="Nombre del set" required>
 
-            <input type="text" name="categoria" id="categoria"
-                placeholder="Categoría (ej: Matemática, Inglés, Historia)">
-        </div>
+                        <textarea name="descripcion" id="setDescription" rows="3"
+                            placeholder="Descripción del set (opcional)"></textarea>
 
-        <h2>Tarjetas</h2>
+                        <input type="text" name="categoria" id="categoria"
+                            placeholder="Categoría (ej: Matemática, Inglés, Historia)">
+                    </div>
 
-        <div id="cards-container" class="cards"></div>
+                    <h2>Tarjetas</h2>
 
-        <div class="actions">
-            <button type="button" class="add-card" onclick="agregarTarjeta()">Agregar Tarjeta</button>
-            <button type="submit" class="save">Guardar Set</button>
-        </div>
+                    <div id="cards-container" class="cards"></div>
 
-    </form>
-</div>
+                    <div class="actions">
+                        <button type="button" class="add-card" onclick="agregarTarjeta()">Agregar Tarjeta</button>
+                        <button type="submit" class="save">Guardar Set</button>
+                    </div>
 
-<style>
-.btn-volver-home {
-    display:inline-block;
-    background:#333;
-    color:white;
-    padding:8px 15px;
-    border-radius:8px;
-    text-decoration:none;
-    margin-bottom:20px;
-}
-</style>
+                </form>
+            </div>
 
-<script>
-const container = document.getElementById("cards-container");
+            <script>
+                function openSidebar() {
+                document.getElementById("sidebar").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+                }
+                function closeSidebar() {
+                document.getElementById("sidebar").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+                }
+                const container = document.getElementById("cards-container");
 
-// Crear la primera tarjeta por defecto
-agregarTarjeta();
+                // Crear la primera tarjeta por defecto
+                agregarTarjeta();
 
-function agregarTarjeta() {
-    const card = document.createElement("div");
-    card.classList.add("card");
+                function agregarTarjeta() {
+                    const card = document.createElement("div");
+                    card.classList.add("card");
 
-    card.innerHTML = `
-        <input type="text" name="termino[]" placeholder="Término">
-        <input type="text" name="definicion[]" placeholder="Definición">
-        <button type="button" class="delete-btn" onclick="this.parentElement.remove()">Eliminar</button>
-    `;
+                    card.innerHTML = `
+                        <input type="text" name="termino[]" placeholder="Término">
+                        <input type="text" name="definicion[]" placeholder="Definición">
+                        <button type="button" class="delete-btn" onclick="this.parentElement.remove()">Eliminar</button>
+                    `;
 
-    container.appendChild(card);
-}
-</script>
+                    container.appendChild(card);
+                }
+            </script>
 
-</body>
+    </body>
 </html>

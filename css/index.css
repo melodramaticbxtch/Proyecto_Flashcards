@@ -31,7 +31,7 @@
   justify-content: space-between;
   align-items: center;
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .header-container {
     flex-direction: column;
     gap: 10px;
@@ -43,7 +43,7 @@
   justify-content: flex-start;
   align-items: center;
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .header-container h1 {
     font-size: 22px;
   }
@@ -60,7 +60,7 @@
   padding: 10px;
   cursor: pointer;
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .header-container .nav-buttons button:nth-child(1) {
     width: 80px;
     height: 40px;
@@ -79,7 +79,7 @@
   padding: 10px;
   cursor: pointer;
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .header-container .nav-buttons button:nth-child(2) {
     width: 80px;
     height: 40px;
@@ -115,7 +115,7 @@ body {
   padding: 30px;
   animation: typing 3s steps(20, end) forwards, blink 0.75s step-end infinite;
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .animated-title {
     font-size: 40px;
     padding: 10px;
@@ -148,7 +148,7 @@ body {
   margin: 20px auto 0;
   line-height: 1.5;
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .description {
     font-size: 18px;
     padding: 0 15px;
@@ -169,7 +169,7 @@ body {
   font-family: "Lexend", sans-serif, sans-serif;
   color: #00284C;
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .sec1 .animated-phrase {
     font-size: 40px;
     text-align: center;
@@ -186,7 +186,7 @@ body {
   overflow: hidden;
   vertical-align: bottom;
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .sec1 .dynamic-text {
     width: 220px;
   }
@@ -249,7 +249,7 @@ body {
     grid-template-columns: repeat(2, 2fr);
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .introduccion {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -313,13 +313,14 @@ body {
     grid-template-columns: repeat(2, 2fr);
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .sec3 .features {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-
-
+.sec3 {
+  /* === Tarjetas con efecto flip === */
+}
 .sec3 .card {
   perspective: 1000px;
   width: 90%;
@@ -395,9 +396,10 @@ footer {
 footer p {
   color: #00284C;
   font-size: 15px;
+  font-family: "Lexend", sans-serif;
   margin: 0;
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   footer p {
     font-size: 12px;
   }
