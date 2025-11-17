@@ -1,0 +1,160 @@
+@import 'mixins';
+@import 'variables';
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $color_terciario;
+  color: $color_base;
+  font-family: $fuente_base;
+}
+/*SIDEBAR */
+.logout-btn {
+  margin-left: auto;
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: $color_base;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+
+.sidebar a {
+  padding: 15px 25px;
+  display: block;
+  color: $color_terciario;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background 0.2s;
+}
+
+.sidebar a:hover {
+  background-color: $color_base;
+  color: $color_terciario;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  color: $color_terciario;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* MAIN*/
+#main {
+  transition: margin-left 0.3s;
+  padding: 20px;
+}
+
+/* Topbar */
+.topbar {
+  display: flex;
+  align-items: center;
+  background: $color_secundario;
+  color: $color_base;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.menu-btn {
+  font-size: 24px;
+  background: none;
+  color: $color_terciario;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* Títulos */
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: $fuente_secundaria;
+  color: $color_base;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: $color_base;
+  font-family: $fuente_secundaria;
+  border-bottom: 2px solid $color_secundario;
+  padding-bottom: 0.5rem;
+}
+
+/* Formularios */
+form {
+  background-color: white;
+  padding: 2rem;
+  margin-bottom: 2rem;     // Espacio entre formularios
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Inputs */
+input[type="email"],
+input[type="password"] {
+  width: 100%;              // Ocupan todo el ancho del form
+  max-width: 100%;          // Para evitar overflow
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid $color_secundario;
+  border-radius: 8px;
+  font-family: $fuente_base;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Botones */
+button {
+  background-color: $color_base;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: $fuente_secundaria;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: $color_secundario;
+  color: $color_base;
+}
+
+/* Mensajes */
+p {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Separación interna en el form */
+form > * {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* Responsivo */
+@media (max-width: 650px) {
+  .container {
+    padding: 1rem;
+  }
+  form {
+    padding: 1.5rem;
+  }
+}

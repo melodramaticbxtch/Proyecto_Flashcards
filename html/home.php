@@ -37,7 +37,7 @@ $colecciones = $stmt->get_result();
     <button class="close-btn" onclick="closeSidebar()">×</button>
     <a href="home.php">Inicio</a>
     <a href="favoritos_pag.php">Favoritos</a>
-    <a href="#">Configuración</a>
+    <a href="perfil.php">Configuración</a>
     <a href="logout.php">Cerrar sesión</a>
   </aside>
 
