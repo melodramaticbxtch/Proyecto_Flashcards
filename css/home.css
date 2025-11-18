@@ -138,6 +138,18 @@ body {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.plantilla a {
+  color: #00284C;
+  text-decoration: none;
+}
+
+.plantilla a:hover,
+.plantilla a:visited,
+.plantilla a:active {
+  color: #00284C;
+  text-decoration: none;
+}
+
 .plantilla:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);

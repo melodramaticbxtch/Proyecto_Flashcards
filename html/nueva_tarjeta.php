@@ -46,50 +46,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Nueva Tarjeta</title>
-<style>
-body {
-    font-family: Arial;
-    padding: 20px;
-}
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
-button {
-    padding: 10px 16px;
-    background: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-button:hover {
-    background: #3d8e41;
-}
-</style>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Nueva Tarjeta</title>
+        <link rel="stylesheet" href="../css/nueva_tarjeta.css">
+    </head>
+    <body>
+        <h1>Agregar tarjeta a: <?php echo $res->fetch_assoc()["nombre"]; ?></h1>
 
-<h1>Agregar tarjeta a: <?php echo $res->fetch_assoc()["nombre"]; ?></h1>
+        <form method="POST">
+            <label>Término</label>
+            <input type="text" name="termino" required>
 
-<form method="POST">
-    <label>Término</label>
-    <input type="text" name="termino" required>
+            <label>Definición</label>
+            <textarea name="definicion" rows="4" required></textarea>
 
-    <label>Definición</label>
-    <textarea name="definicion" rows="4" required></textarea>
+            <button type="submit">Guardar tarjeta</button>
+        </form>
 
-    <button type="submit">Guardar tarjeta</button>
-</form>
+        <br>
+        <a href="coleccion.php?id=<?php echo $id_coleccion; ?>">⬅ Volver</a>
 
-<br>
-<a href="coleccion.php?id=<?php echo $id_coleccion; ?>">⬅ Volver</a>
-
-</body>
+    </body>
 </html>

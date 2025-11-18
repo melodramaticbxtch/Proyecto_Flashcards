@@ -54,26 +54,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="es">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Crear nuevo set</title>
         <link rel="stylesheet" href="../css/generador_sets.css">
     </head>
 
     <body>
-        <!-- Sidebar -->
-        <aside id="sidebar" class="sidebar">
-            <button class="close-btn" onclick="closeSidebar()">×</button>
-            <a href="home.php">Inicio</a>
-            <a href="favoritos_pag.php">Favoritos</a>
-            <a href="#">Configuración</a>
-            <a href="logout.php">Cerrar sesión</a>
-        </aside>
-
-        <!-- Contenido principal -->
-        <div id="main">
-            <header class="topbar">
-            <button class="menu-btn" onclick="openSidebar()">☰</button>
-            <h1 id="bienvenida">Crear tu nueva coleccion!</h1>
-            </header>
 
             <div class="container">
 

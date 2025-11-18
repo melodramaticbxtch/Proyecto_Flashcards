@@ -30,111 +30,111 @@ if (count($tarjetas) == 0) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Modo Aprender</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../css/aprender_flip.css">
-</head>
-<body>
-<!-- Sidebar -->
-  <aside id="sidebar" class="sidebar">
-    <button class="close-btn" onclick="closeSidebar()">×</button>
-    <a href="home.php">Inicio</a>
-    <a href="favoritos_pag.php">Favoritos</a>
-    <a href="#">Configuración</a>
-    <a href="logout.php">Cerrar sesión</a>
-  </aside>
+  <head>
+    <meta charset="UTF-8">
+    <title>Modo Aprender</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/aprender_flip.css">
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <button class="close-btn" onclick="closeSidebar()">×</button>
+      <a href="home.php">Inicio</a>
+      <a href="favoritos_pag.php">Favoritos</a>
+      <a href="perfil.php">Configuración</a>
+      <a href="logout.php">Cerrar sesión</a>
+    </aside>
 
-  <!-- Contenido principal -->
-  <div id="main">
-    <header class="topbar">
-      <button class="menu-btn" onclick="openSidebar()">☰</button>
-      <h1 id="bienvenida">¡Hora de aprender!</h1>
-    </header>
-<div class="learn-container">
-
-  <h2>Aprendiendo colección</h2>
-
-  <!-- Progreso -->
-  <div class="progress-bar">
-    <div class="progress-fill" id="progress"></div>
-  </div>
-
-  <!-- Tarjeta -->
-  <div class="flip-card" id="flipCard">
-    <div class="flip-inner">
-      <div class="flip-front" id="cardFront"></div>
-      <div class="flip-back" id="cardBack"></div>
+    <!-- Top Bar -->
+    <div id="main">
+      <header class="topbar">
+        <button class="menu-btn" onclick="openSidebar()">☰</button>
+        <h1 id="bienvenida">¡Hora de aprender!</h1>
+      </header>
     </div>
-  </div>
+    <div class="learn-container">
 
-  <!-- Botones -->
-  <div class="learn-buttons">
-    <button onclick="siguiente()">Siguiente</button>
-    <button onclick="meLaSe()">Me la sé ✔</button>
-    <button onclick="noMeLaSe()">No me la sé ❌</button>
-  </div>
+      <h2>Aprendiendo colección</h2>
 
-</div>
+      <!-- Progreso -->
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress"></div>
+      </div>
 
-<script>
-  function openSidebar() {
-  document.getElementById("sidebar").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-}
-function closeSidebar() {
-  document.getElementById("sidebar").style.width = "0";
-  document.getElementById("main").style.marginLeft = "0";
-}
-const tarjetas = <?php echo json_encode($tarjetas); ?>;
+      <!-- Tarjeta -->
+      <div class="flip-card" id="flipCard">
+        <div class="flip-inner">
+          <div class="flip-front" id="cardFront"></div>
+          <div class="flip-back" id="cardBack"></div>
+        </div>
+      </div>
 
-let index = 0;
-let correctas = 0;
+      <!-- Botones -->
+      <div class="learn-buttons">
+        <button onclick="siguiente()">Siguiente</button>
+        <button onclick="meLaSe()">Me la sé ✔</button>
+        <button onclick="noMeLaSe()">No me la sé ❌</button>
+      </div>
+  |</div>
 
-// mostrar tarjeta inicial
-cargarTarjeta();
+    <script>
+      function openSidebar() {
+      document.getElementById("sidebar").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+      }
+      function closeSidebar() {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+      }
+      const tarjetas = <?php echo json_encode($tarjetas); ?>;
 
-// click para flip
-document.getElementById("flipCard").addEventListener("click", () => {
-  document.getElementById("flipCard").classList.toggle("flipped");
-});
+      let index = 0;
+      let correctas = 0;
 
-// cargar tarjeta actual
-function cargarTarjeta() {
-  const t = tarjetas[index];
-  document.getElementById("flipCard").classList.remove("flipped");
-  document.getElementById("cardFront").innerText = t.termino;
-  document.getElementById("cardBack").innerText = t.definicion;
+      // mostrar tarjeta inicial
+      cargarTarjeta();
 
-  let progreso = ((index) / tarjetas.length) * 100;
-  document.getElementById("progress").style.width = progreso + "%";
-}
+      // click para flip
+      document.getElementById("flipCard").addEventListener("click", () => {
+        document.getElementById("flipCard").classList.toggle("flipped");
+      });
 
-function siguiente() {
-  index++;
-  if (index >= tarjetas.length) return finalizar();
-  cargarTarjeta();
-}
+      // cargar tarjeta actual
+      function cargarTarjeta() {
+        const t = tarjetas[index];
+        document.getElementById("flipCard").classList.remove("flipped");
+        document.getElementById("cardFront").innerText = t.termino;
+        document.getElementById("cardBack").innerText = t.definicion;
 
-function meLaSe() {
-  correctas++;
-  siguiente();
-}
+        let progreso = ((index) / tarjetas.length) * 100;
+        document.getElementById("progress").style.width = progreso + "%";
+      }
 
-function noMeLaSe() {
-  siguiente();
-}
+      function siguiente() {
+        index++;
+        if (index >= tarjetas.length) return finalizar();
+        cargarTarjeta();
+      }
 
-function finalizar() {
-  document.querySelector(".learn-container").innerHTML =
-    `<h2>¡Completado!</h2>
-     <p>Acertaste ${correctas} de ${tarjetas.length} tarjetas.</p>
-     <button onclick="window.location.href='coleccion.php?id=<?php echo $id_coleccion; ?>'">
-        Volver a la colección
-     </button>`;
-}
-</script>
+      function meLaSe() {
+        correctas++;
+        siguiente();
+      }
 
-</body>
+      function noMeLaSe() {
+        siguiente();
+      }
+      function finalizar() {
+        document.querySelector(".learn-container").innerHTML =
+          `<h2>¡Completado!</h2>
+          <p>Acertaste ${correctas} de ${tarjetas.length} tarjetas.</p>
+          <a href="coleccion.php?id=<?php echo $id_coleccion; ?>" class="btn-volver">
+              Volver a la colección
+          </a>`;
+        }
+
+    </script>
+
+  </body>
 </html>

@@ -1,7 +1,3 @@
-/* Alineacion ceentrada*/
-/* Alineado a la derecha */
-/* Alineado a la izquierda */
-/*responsive*/
 /*VARIABLES DE COLOR*/
 /*Usadas en el index*/
 /*Azul*/
@@ -23,7 +19,10 @@
   font-style: normal;
 }
 
-/* CONTENEDOR PRINCIPAL */
+/* Alineacion ceentrada*/
+/* Alineado a la derecha */
+/* Alineado a la izquierda */
+/*responsive*/
 body {
   margin: 0;
   padding: 0;
@@ -104,93 +103,54 @@ body {
   margin-right: 10px;
 }
 
-/* CONTENEDOR DE APRENDIZAJE */
-.learn-container {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* Pantalla estilo moderno */
-.learn-container {
-  padding: 20px;
+.quiz-container {
   max-width: 600px;
   margin: auto;
+  padding: 20px;
   text-align: center;
 }
 
-/* Barra de progreso */
 .progress-bar {
   width: 100%;
   background: #ddd;
   border-radius: 20px;
-  margin: 20px 0;
+  margin-bottom: 20px;
   height: 12px;
 }
 
 .progress-fill {
-  height: 100%;
   width: 0%;
+  height: 100%;
   background: #57a1ff;
   border-radius: 20px;
   transition: 0.3s;
 }
 
-/* Tarjeta estilo flip */
-.flip-card {
-  width: 100%;
-  height: 200px;
-  margin: auto;
-  perspective: 1000px;
-  cursor: pointer;
-}
-
-.flip-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transition: 0.6s;
-  transform-style: preserve-3d;
-}
-
-.flip-card.flipped .flip-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-front, .flip-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border: 2px solid #333;
-  padding: 20px;
-  border-radius: 10px;
-  background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.question {
   font-size: 22px;
+  margin-bottom: 25px;
+  font-weight: bold;
 }
 
-.flip-back {
-  transform: rotateY(180deg);
-}
-
-/* Botones */
-.learn-buttons {
-  margin-top: 25px;
-  display: flex;
-  justify-content: space-around;
-}
-
-.learn-buttons button {
-  padding: 12px 18px;
+.options button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
   font-size: 18px;
-  cursor: pointer;
   border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #444;
+}
+
+.correct {
+  background: #4caf50 !important;
+  color: white;
+}
+
+.wrong {
+  background: #e74c3c !important;
+  color: white;
 }
 
 .btn-volver {
@@ -209,4 +169,4 @@ body {
   background-color: rgb(201.0593220339, 241.9406779661, 222.0677966102);
 }
 
-/*# sourceMappingURL=aprender_flip.css.map */
+/*# sourceMappingURL=aprender_quiz.css.map */

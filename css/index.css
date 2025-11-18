@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*VARIABLES DE COLOR*/
 /*Usadas en el index*/
 /*Azul*/
@@ -48,43 +49,40 @@
     font-size: 22px;
   }
 }
-.header-container .nav-buttons button:nth-child(1) {
-  background-color: #00284C;
-  font-family: "Lexend", sans-serif;
-  color: #A0E8C5;
-  margin-left: 10px;
-  border-radius: 15px;
-  border: none;
-  width: 100px;
-  height: 50px;
-  padding: 10px;
-  cursor: pointer;
+.header-container .nav-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
 }
-@media (max-width: 800px) {
-  .header-container .nav-buttons button:nth-child(1) {
-    width: 80px;
-    height: 40px;
-    font-size: 12px;
-  }
-}
-.header-container .nav-buttons button:nth-child(2) {
-  background-color: #EDEDED;
+.header-container .nav-buttons a {
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
   font-family: "Lexend", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+.header-container {
+  /* Botón Log in */
+}
+.header-container .btn-login {
+  background: #00284C;
+  color: white;
+}
+.header-container .btn-login:hover {
+  background: rgb(0, 13.1578947368, 25);
+}
+.header-container {
+  /* Botón Sign up */
+}
+.header-container .btn-signup {
+  background: #A0E8C5;
   color: #00284C;
-  margin-left: 10px;
-  border-radius: 15px;
-  border: none;
-  width: 100px;
-  height: 50px;
-  padding: 10px;
-  cursor: pointer;
+  border: 2px solid #00284C;
 }
-@media (max-width: 800px) {
-  .header-container .nav-buttons button:nth-child(2) {
-    width: 80px;
-    height: 40px;
-    font-size: 12px;
-  }
+.header-container .btn-signup:hover {
+  background: rgb(192.8474576271, 239.9525423729, 217.0542372881);
 }
 
 /*BODY*/
